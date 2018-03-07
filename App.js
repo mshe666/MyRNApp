@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
 
 
 import React, {Component} from 'react';
-import {Image, Text, View, TextInput, Button, Alert, StyleSheet} from 'react-native';
+import {Image, Text, View, TextInput, Button, Alert, StyleSheet,
+TouchableHighlight, TouchableNativeFeedback, TouchableOpacity, TouchableWithoutFeedback,
+Platform} from 'react-native';
 
 /*class Greeting extends Component {
     render() {
@@ -97,7 +99,7 @@ export default class ImageSample extends Component {
     }
 }*/
 
-export default class ButtonTest extends Component {
+/*export default class ButtonTest extends Component {
     _onPressButton() {
         Alert.alert('You tapped the button!');
     }
@@ -134,10 +136,65 @@ export default class ButtonTest extends Component {
           </View>
         );
     }
+}*/
+
+export default class Touchables extends Component {
+    _onPressButton() {
+        Alert.alert('You tapped the button!');
+    }
+
+    _onLongPressButton() {
+        Alert.alert('You long-pressed the button!');
+    }
+    render() {
+        return (
+            <View style={styles.container}>
+                <TouchableHighlight
+                onPress={this._onPressButton}
+                underlayColor={'white'}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>TouchableHighlight</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableOpacity
+                onPress={this._onPressButton}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>TouchableOpacity</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableNativeFeedback
+                onPress={this._onPressButton}
+                background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground : ''}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
+                    </View>
+                </TouchableNativeFeedback>
+
+                <TouchableWithoutFeedback
+                onPress={this._onPressButton}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>TouchableNativeFeedback</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+
+                <TouchableHighlight
+                onPress={this._onPressButton}
+                onLongPress={this._onLongPressButton}
+                underlayColor={'white'}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Touchable with Long Press</Text>
+                    </View>
+                </TouchableHighlight>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-    container: {
+    //FOR BUTTON
+/*    container: {
         flex: 1,
         justifyContent: 'center',
     },
@@ -150,6 +207,24 @@ const styles = StyleSheet.create({
         margin: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
+    }*/
+
+    //FOR TOUCHABLE
+    container: {
+        paddingTop: 60,
+        alignItems: 'center',
+    },
+
+    button: {
+        marginBottom: 30,
+        width: 260,
+        alignItems: 'center',
+        backgroundColor: 'powderblue',
+    },
+
+    buttonText: {
+        padding: 20,
+        color: 'white',
     }
 
     })
