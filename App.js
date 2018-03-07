@@ -25,9 +25,11 @@ const styles = StyleSheet.create({
 
 
 import React, {Component} from 'react';
-import {Image, Text, View, TextInput, Button, Alert, StyleSheet,
-TouchableHighlight, TouchableNativeFeedback, TouchableOpacity, TouchableWithoutFeedback,
-Platform} from 'react-native';
+import {
+    Image, Text, View, TextInput, Button, Alert, StyleSheet,
+    TouchableHighlight, TouchableNativeFeedback, TouchableOpacity, TouchableWithoutFeedback,
+    Platform, ScrollView, FlatList, SectionList,
+} from 'react-native';
 
 /*class Greeting extends Component {
     render() {
@@ -138,7 +140,7 @@ export default class ImageSample extends Component {
     }
 }*/
 
-export default class Touchables extends Component {
+/*export default class Touchables extends Component {
     _onPressButton() {
         Alert.alert('You tapped the button!');
     }
@@ -190,41 +192,129 @@ export default class Touchables extends Component {
             </View>
         );
     }
+}*/
+
+/*export default class ScrollViewExample extends Component {
+    render() {
+        return (
+            <ScrollView pagingEnabled={true}>
+                <Text style={{fontSize: 222}}>Scroll me plz if you like Scrolling down What's the best Framework
+                 around? React Native</Text>
+            </ScrollView>
+        );
+    }
+}*/
+
+/*export default class FlatListBasics extends Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    data={[
+                        {key: 'Auckland'},
+                        {key: 'Wellington'},
+                        {key: 'Christchurch'},
+                        {key: 'Hamilton'},
+                        {key: 'Queenstown'},
+                    ]}
+
+                    renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+                />
+
+            </View>
+
+        );
+    }
+}*/
+
+export default class SectionListBsics extends Component {
+    render() {
+        return (
+          <View style={styles.container}>
+              <SectionList
+              sections={[
+                  {title: 'North Island', data: ['Auckland', 'Wellington', 'Hamilton']},
+                  {title: 'South Island', data: ['Christchurch', 'Queenstown']},
+              ]}
+
+              renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+              renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+              keyExtractor={(item, index) => index}
+              />
+
+          </View>
+
+        );
+    }
 }
+
 
 const styles = StyleSheet.create({
     //FOR BUTTON
-/*    container: {
-        flex: 1,
-        justifyContent: 'center',
-    },
+    /*    container: {
+            flex: 1,
+            justifyContent: 'center',
+        },
 
-    buttonContainer: {
-        margin: 20,
-    },
+        buttonContainer: {
+            margin: 20,
+        },
 
-    alternativeLayoutButtonContainer: {
-        margin: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    }*/
+        alternativeLayoutButtonContainer: {
+            margin: 20,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+        }*/
 
     //FOR TOUCHABLE
+    /*    container: {
+            paddingTop: 60,
+            alignItems: 'center',
+        },
+
+        button: {
+            marginBottom: 30,
+            width: 260,
+            alignItems: 'center',
+            backgroundColor: 'powderblue',
+        },
+
+        buttonText: {
+            padding: 20,
+            color: 'white',
+        }*/
+
+    //FOR FLAT LIST
+/*    container: {
+        flex: 1,
+        paddingTop: 22,
+    },
+
+    item: {
+        padding: 10,
+        fontSize: 18,
+        height: 44,
+    }*/
+
+    //FOR SECTION LIST
     container: {
-        paddingTop: 60,
-        alignItems: 'center',
+        flex: 1,
+        paddingTop: 22,
     },
-
-    button: {
-        marginBottom: 30,
-        width: 260,
-        alignItems: 'center',
-        backgroundColor: 'powderblue',
+    sectionHeader: {
+        paddingTop: 2,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 2,
+        fontSize: 14,
+        fontWeight: 'bold',
+        backgroundColor: 'rgba(247,247,247,1.0)',
     },
-
-    buttonText: {
-        padding: 20,
-        color: 'white',
+    item: {
+        padding: 10,
+        fontSize: 18,
+        height: 44,
     }
 
-    })
+
+})
